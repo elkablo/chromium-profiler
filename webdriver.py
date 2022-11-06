@@ -3,6 +3,7 @@
 # Copyright 2022 Marek Behún <kabel@kernel.org>
 
 from selenium.webdriver import Chrome
+from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.remote.webelement import WebElement
 from functools import wraps
@@ -66,7 +67,10 @@ class ProfilerWebDriver(Chrome):
 	@wrap_elements
 	@repeat_on_unexpected
 	def find_elements_by_css_selector(self, *args, **kwargs):
-		return super().find_elements_by_css_selector(*args, *kwargs)
+		return super().find_elements(By.CSS_SELECTOR, *args, *kwargs)
+
+	def find_elements_by_xpath(self, *args, **kwargs):
+		return super().find_elements(By.XPATH, *args, *kwargs)
 
 	def wait_for_javascript_condition(self, condition, time=10):
 		while time > 0:
