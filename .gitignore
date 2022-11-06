@@ -2,3 +2,4 @@ __pycache__
 profdata
 *.profdata
 *.wprgo
+chromium-profiler-*.tar*
